@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/tailwind.css') }}">
+
+    <!-- Para agregar custom CSS -->
+    {%- block app_css %} {%- endblock %}
+    {%- block app_header %} {%- endblock %}
+    <title>{%- block app_title %}{%- if title %}{{ title }} - {{config.SYSTEM_NAME}}{%- else %}{{config.SYSTEM_NAME}}{%-
+        endif %}{%- endblock %}
+    </title>
+</head>
+
+<body {% if body_class %}class="{{ body_class }}" {% endif %} {% if body_style %}style="{{ body_style }}" {% endif %}>
+    {%- block navbar %}{%- endblock %}
+    <!--<div id="main_container" class="container"> -->
+        {%- block app_content %}{%- endblock %}
+    <!--</div> -->
+    <!-- Para agregar custom JS -->
+    {%- block app_js %}{%- endblock %}
+</body>
+
+</html>
