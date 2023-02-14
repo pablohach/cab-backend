@@ -220,7 +220,6 @@ class RoleListResource(Resource):
             Retorna lista de roles
             pudiéndole pasar datos de paginación, filtrado y orden
         """
-        # req = request.get_json() or {}
         args_pag = getPaginationArgs(request)
         schema = RoleSchema()
         data = Role.get_paginated(schema, args_pag)

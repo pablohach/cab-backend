@@ -94,6 +94,7 @@ def getPaginationArgsFromQuerystring(args: request, extra_params: list = None):
            'order': json.loads(args.get('order')) if args.get('order') else None,
            'filters': json.loads(args.get('filters')) if args.get('filters') else None,
            }
+    
     if args and extra_params:
         for ep in extra_params:
             # verificar si ep es una tupla, si es, chequeo el tipo

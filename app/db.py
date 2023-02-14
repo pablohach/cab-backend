@@ -79,9 +79,9 @@ class BaseModelMixin:
                 query = query.order_by(text(args_pag['order']))
             else:
                 query = query.order_by(args_pag['order'])
-
+        
         if 'page' in args_pag and args_pag['page']:
-            pag = query.paginate(args_pag['page'], args_pag['per_page'], False)
+            pag = query.paginate(page=args_pag['page'], per_page=args_pag['per_page'], error_out=False)
             ret['items'] = pag.items
             ret['pagination'] = getPaginationData(pag)
         else:
