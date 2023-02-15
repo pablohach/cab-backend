@@ -62,6 +62,11 @@ class BaseModelMixin:
             query = cls.query
         if 'filters' in args_pag and args_pag['filters'] and isinstance(args_pag['filters'], (list, dict)):
             from flask_filter.schemas import FilterSchema
+            # ATENCION, para busquedas modifique en 
+            # class LikeFilter(Filter):  .like(self.value)) por ilike (.ilike(self.value)))
+            # Par aque las  búsquedas sean Case Insensitive
+            # Si actualizo el package flask_filter, modificarlo nuevamente
+            
             filter_schema = FilterSchema()
 
             if isinstance(args_pag['filters'], dict):

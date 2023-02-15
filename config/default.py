@@ -48,8 +48,8 @@ LOG_TO_FILE = False
 
 TOKEN_EXPIRATION_HOURS = 12
 
-# Roles que no dejo modificar/borrar (Admin, Super, User y Agencia)
-FIXED_ROLES = 4
+# Roles que no dejo modificar/borrar (Admin, Super, User)
+FIXED_ROLES = 3
 
 
 
