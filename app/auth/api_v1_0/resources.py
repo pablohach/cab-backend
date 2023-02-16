@@ -408,7 +408,7 @@ class UserListResource(Resource):
     @jwt_permission_required('USERS_ADD')
     def post(self):
         """ Alta de usuario
-            Si no se envia password, se genera una random (sólo para que no sea null)
+            Si no se envia api_password, se genera una random (sólo para que no sea null)
             y se envia mail para hacer un password reset
         """
         import secrets
@@ -423,6 +423,10 @@ class UserListResource(Resource):
             args['password'] = secrets.token_urlsafe(13)
             # me aseguro que tenga 20 caracteres, con los simbolos necesarios
             args['password'] = args['password'][:16] + 'Ab0!'
+            
+        # Solo para CAB
+        args['api_password'] = args['password']
+            
         user_schema = UserSchema()
         errors = user_schema.validate(args)
         if errors:
@@ -441,7 +445,7 @@ class UserListResource(Resource):
                 "Ya existe un usuario con el email {}.".format(data['email']))
 
         user = User(**data)
-        user.set_password(data['password'])
+        user.set_password(data['api_password'])
         try:
             user.save()
         except IntegrityError as e:

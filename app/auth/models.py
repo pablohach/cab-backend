@@ -211,14 +211,14 @@ class User(db.Model, BaseModelMixin):
                                   backref=db.backref('users', lazy=True))
 
     def __init__(self, login: str, nombre: str, email: str,
-                 role_codes=None, password: str = None) -> None:
+                 role_codes=None, habilitado: int = 1, api_password: str = None) -> None:
         self.id_usuario = None
-        self.habilitado = True
+        self.habilitado = 1 if  habilitado==1 else 0
         self.login = login
         self.nombre = nombre
         self.email = email
-        if password:
-            self.set_password(password)
+        if api_password:
+            self.set_password(api_password)
 
         self.add_roles(role_codes)
 
@@ -230,7 +230,7 @@ class User(db.Model, BaseModelMixin):
         if 'email' in data_dict:
             self.email = data_dict['email']
         if 'habilitado' in data_dict:
-            self.habilitado = data_dict['habilitado']
+            self.habilitado = 1 if  data_dict['habilitado']=='1' else 0
         if 'role_codes' in data_dict:
             self.roles = []
             self.add_roles(data_dict['role_codes'])
