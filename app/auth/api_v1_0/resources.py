@@ -418,7 +418,7 @@ class UserListResource(Resource):
         # Si no pasaron password, genero una random, ya que no puede ser null
         # y envio mail para hacer password reset
         send_mail_password_reset = 'password' not in args or not args['password']
-        logger.debug(send_mail_password_reset)
+        logger.debug(args)
         if send_mail_password_reset:
             args['password'] = secrets.token_urlsafe(13)
             # me aseguro que tenga 20 caracteres, con los simbolos necesarios
@@ -485,10 +485,8 @@ class UserResource(Resource):
             raise UserNotFound()
 
         args = request.get_json() or {}
-
-
         user_schema = UserSchema(
-            partial=("login", "email", "nombre",))
+            partial=("login", "email", "nombre", "habilitado",))
         errors = user_schema.validate(args)
         if errors:
             raise BadRequest(errors)
@@ -588,7 +586,7 @@ class PermissionListResource(Resource):
         """
         args_pag = getPaginationArgs(request)
         if not 'order' in args_pag:
-            args_pag['order'] = Permission.order
+            args_pag['order'] = Permission.orden
         schema = PermissionSchema()
         data = Permission.get_paginated(schema, args_pag)
         result = schema.dump(data['items'], many=True)

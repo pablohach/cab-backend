@@ -202,7 +202,7 @@ class User(db.Model, BaseModelMixin):
     email = db.Column(db.String(100), nullable=False, unique=True)
     # password es palabra reservada en FIREBIRD, tuve que cambiarla
     api_password = db.Column(db.String(200), nullable=False)
-    habilitado = db.Column(dt.DB_type_Boolean, default=False, nullable=False)
+    habilitado = db.Column(dt.DB_type_Boolean, default=True, nullable=False)
 
 
     roles = db.relationship('Role', secondary=user_roles, lazy=True,
@@ -230,7 +230,7 @@ class User(db.Model, BaseModelMixin):
         if 'email' in data_dict:
             self.email = data_dict['email']
         if 'habilitado' in data_dict:
-            self.habilitado = 1 if  data_dict['habilitado']=='1' else 0
+            self.habilitado = 1 if  data_dict['habilitado'] else 0
         if 'role_codes' in data_dict:
             self.roles = []
             self.add_roles(data_dict['role_codes'])
