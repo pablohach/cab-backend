@@ -131,8 +131,8 @@ Thumbs.db
 # Mios
 start.cmd
 /config/local.py
-/__varios__
-/logs
 /config/prod.py
 /config/dev.py
+/__varios__
+/logs
 
