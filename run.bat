@@ -1,1 +1,4 @@
-flask run --host=0.0.0.0 --port=8888
+d:
+cd d:\desa\proyectos\cab\backend\api-cab
+cls
+.\venv\Scripts\activate.bat
