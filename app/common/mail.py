@@ -27,7 +27,7 @@ def send_email(subject, recipients, text_body, sender=None,
         attachments: list of type Attachment
     """
     sender = sender or current_app.config['DONT_REPLY_FROM_EMAIL']
-    msg = Message(subject, sender=sender,
+    msg = Message(subject=subject, sender=sender, reply_to= current_app.config['REPLY_TO_EMAIL'] or '',
                   recipients=recipients, cc=cc, bcc=bcc, attachments=attachments)
 
     msg.body = text_body
