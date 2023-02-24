@@ -64,7 +64,7 @@ class BaseModelMixin:
             from flask_filter.schemas import FilterSchema
             # ATENCION, para busquedas modifique en 
             # class LikeFilter(Filter):  .like(self.value)) por ilike (.ilike(self.value)))
-            # Par aque las  búsquedas sean Case Insensitive
+            # Para que las  búsquedas sean Case Insensitive
             # Si actualizo el package flask_filter, modificarlo nuevamente
             
             filter_schema = FilterSchema()
