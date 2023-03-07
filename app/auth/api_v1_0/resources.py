@@ -108,10 +108,8 @@ def sendMailResetPassword(user, is_new_user=False):
     #url = request.host_url + 'auth/reset/'
 
     # esta es para usar pantalla del frontend
-    # sin port
-    #url = request.host_url + 'auth/reset-pass/'
-    # con port
-    url = request.host + 'auth/reset-pass/'
+    
+    url = request.host_url + 'auth/reset-pass/'
     
 
     subject = '{} - {}'.format(current_app.config['SYSTEM_NAME'],
